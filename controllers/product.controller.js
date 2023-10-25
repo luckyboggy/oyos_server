@@ -34,9 +34,7 @@ class ProductController {
         for (let i = 0; i < img.length; i++) {
           let fileName = v4() + ".png";
 
-          img[i].mv(
-            path.resolve(__dirname, "..", "server", "static", fileName)
-          );
+          img[i].mv(path.resolve(__dirname, "static", fileName));
           imgArr.push(fileName);
         }
       }
@@ -108,7 +106,7 @@ class ProductController {
         for (let i = 0; i < img.length; i++) {
           let fileName = v4() + ".png";
           img[i].mv(
-            path.resolve(__dirname, "..", "server", "static", fileName)
+            path.resolve(__dirname, "static", fileName)
           );
           imgArr.push(fileName);
         }
@@ -169,7 +167,7 @@ class ProductController {
 
   async getAll(req, res) {
     let { typeIds, collectionId, limit, page, sortType } = req.query;
-    console.log(typeIds)
+    console.log(typeIds);
     sortType = sortType || ["updatedAt", "ASC"];
     limit = limit || 8;
     page = page || 1;

@@ -16,7 +16,6 @@
     static forbiden(message) {
         return new ApiError(403, message);
     }
-
 }
 
 

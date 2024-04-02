@@ -1,5 +1,5 @@
 import { Collection } from "../models/models.js";
-import { ApiError } from "../error/apiError.js";
+import { ApiError } from "../error/ApiError.js";
 
 class CollectionController {
   async create(req, res) {

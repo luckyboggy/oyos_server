@@ -27,16 +27,13 @@ import { errorHandler } from "./middleware/errorHandlingMiddleware.js";
 const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
+const IP_ADDRESS = "5.101.152.161";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
-// app.use(cors({
-//   origin: 'http://olgayudina.ru',
-//   credentials: true
-// }));
 app.use(cors());
 app.use("/api", router);
 
@@ -51,7 +48,7 @@ const startApp = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    app.listen(PORT, () =>
+    app.listen(PORT, IP_ADDRESS, () =>
       console.log(`Server has been started on port ${PORT}`)
     );
   } catch (err) {

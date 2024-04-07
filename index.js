@@ -51,7 +51,7 @@ const startApp = async () => {
     /* app.listen(PORT, IP_ADDRESS, () =>
       console.log(`Server has been started on port ${PORT}`)
     ); */
-    app.listen(80, IP_ADDRESS, () =>
+    app.listen(433, IP_ADDRESS, () =>
       console.log(`Server has been started on port ${PORT}`)
     );
   } catch (err) {

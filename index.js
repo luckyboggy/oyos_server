@@ -28,6 +28,7 @@ const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
 const IP_ADDRESS = "5.101.152.161";
+const DOMAIN = "srv.olgayudina.ru";
 
 const app = express();
 
@@ -51,7 +52,7 @@ const startApp = async () => {
     /* app.listen(PORT, IP_ADDRESS, () =>
       console.log(`Server has been started on port ${PORT}`)
     ); */
-    app.listen(433, "srv.olgayudina.ru", () =>
+    app.listen(433, DOMAIN, () =>
       console.log(`Server has been started on port ${PORT}`)
     );
   } catch (err) {

@@ -52,7 +52,7 @@ const startApp = async () => {
     /* app.listen(PORT, IP_ADDRESS, () =>
       console.log(`Server has been started on port ${PORT}`)
     ); */
-    app.listen(433, DOMAIN, () =>
+    app.listen(433, () =>
       console.log(`Server has been started on port ${PORT}`)
     );
   } catch (err) {

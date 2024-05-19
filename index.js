@@ -4,6 +4,8 @@ import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
 dotenv.config();
 import path from "path";
+import https from "https";
+import fs from "fs";
 
 import { sequelize } from "./db.js";
 import {
@@ -27,8 +29,6 @@ import { errorHandler } from "./middleware/errorHandlingMiddleware.js";
 const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
-const IP_ADDRESS = "5.101.152.161";
-const DOMAIN = "srv.olgayudina.ru";
 
 const app = express();
 
@@ -42,17 +42,21 @@ app.use("/api", router);
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Work!!!" });
+  res.status(200).json({ message: "Working" });
 });
+
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/olgayudina.ru/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/olgayudina.ru/fullchain.pem'),
+};
+
+const server = https.createServer(httpsOptions, app);
 
 const startApp = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    /* app.listen(PORT, IP_ADDRESS, () =>
-      console.log(`Server has been started on port ${PORT}`)
-    ); */
-    app.listen(433, () =>
+    server.listen(PORT, () =>
       console.log(`Server has been started on port ${PORT}`)
     );
   } catch (err) {
